@@ -1,0 +1,318 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Amara K.",
+      "password": "hashedpassword",
+      "joined_date": "Member since 2023",
+      "rating": 4.9
+    },
+    {
+      "id": 2,
+      "username": "Dinuka P.",
+      "password": "hashedpassword",
+      "joined_date": "Member since 2022",
+      "rating": 4.7
+    },
+    {
+      "id": 3,
+      "username": "Sasindu R.",
+      "password": "hashedpassword",
+      "joined_date": "Member since 2024",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "username": "Nethmi F.",
+      "password": "hashedpassword",
+      "joined_date": "Member since 2021",
+      "rating": 4.8
+    },
+    {
+      "id": 5,
+      "username": "Kavindu S.",
+      "password": "hashedpassword",
+      "joined_date": "Member since 2023",
+      "rating": 4.6
+    },
+    {
+      "id": 6,
+      "username": "Ishara W.",
+      "password": "hashedpassword",
+      "joined_date": "Member since 2020",
+      "rating": 4.4
+    },
+    {
+      "id": 7,
+      "username": "Test",
+      "password": "$2a$10$BRVyPDcjg9/cVa8fba8YautlSf1fdFKsSsty4OOu5Tj4/27JBbf1W",
+      "joined_date": "Member since 2026",
+      "rating": 5
+    },
+    {
+      "id": 8,
+      "username": "User",
+      "password": "$2a$10$pAwVJafruNiYuRoGCfsI6uA09dUCmj33HOGWATfbKMG3LaRVd4ILK",
+      "joined_date": "Member since 2026",
+      "rating": 5
+    },
+    {
+      "id": 9,
+      "username": "G",
+      "password": "$2a$10$tZufM/CZ6VpfvSsBemUoee4aGsNO0bqkQuNIBJekvOV3ND4uyKLpq",
+      "joined_date": "Member since 2026",
+      "rating": 5
+    },
+    {
+      "id": 10,
+      "username": "Test2",
+      "password": "$2a$10$JrFRbWSNW2EPCoc8BkMVBOCRm0/kwGwANu9NV68bqRRCCFTb6Pu2W",
+      "joined_date": "Member since 2026",
+      "rating": 5
+    },
+    {
+      "id": 11,
+      "username": "oni",
+      "password": "$2a$10$83UYpd.fkZv9zof./39kgOaivZrEbnbaFIfVZjYL.H65bUFZoPzvK",
+      "joined_date": "Member since 2026",
+      "rating": 5
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Casio FX-991ES Plus",
+      "category": "Study Equipment",
+      "price": 2500,
+      "seller_id": 1,
+      "condition": "Like New",
+      "stock": 3,
+      "rating": 4.8,
+      "icon": "Calculator",
+      "description": "Barely used scientific calculator...",
+      "image": "https://images.unsplash.com/photo-1574607383077-47ddc2dc51c4?w=500&q=80"
+    },
+    {
+      "id": 2,
+      "name": "Programming Textbook",
+      "category": "Books & Notes",
+      "price": 1800,
+      "seller_id": 2,
+      "condition": "Good",
+      "stock": 2,
+      "rating": 4.6,
+      "icon": "BookOpen",
+      "description": "Core programming textbook...",
+      "image": "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=500&q=80"
+    },
+    {
+      "id": 3,
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 6500,
+      "seller_id": 3,
+      "condition": "Like New",
+      "stock": 0,
+      "rating": 4.9,
+      "icon": "Headphones",
+      "description": "Over-ear wireless headphones...",
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80"
+    },
+    {
+      "id": 4,
+      "name": "Laptop",
+      "category": "Electronics",
+      "price": 145000,
+      "seller_id": 4,
+      "condition": "Good",
+      "stock": 1,
+      "rating": 4.7,
+      "icon": "Laptop",
+      "description": "Reliable laptop, great for coursework...",
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80"
+    },
+    {
+      "id": 5,
+      "name": "Lecture Notes — Data Structures",
+      "category": "Books & Notes",
+      "price": 500,
+      "seller_id": 5,
+      "condition": "New",
+      "stock": 5,
+      "rating": 4.5,
+      "icon": "NotebookText",
+      "description": "Hand-written and typed lecture notes...",
+      "image": "https://images.unsplash.com/photo-1517842645767-c639042777db?w=500&q=80"
+    },
+    {
+      "id": 6,
+      "name": "Scientific Calculator",
+      "category": "Study Equipment",
+      "price": 3200,
+      "seller_id": 6,
+      "condition": "Fair",
+      "stock": 4,
+      "rating": 4.3,
+      "icon": "Calculator",
+      "description": "Fully functional scientific calculator...",
+      "image": "https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48f?w=500&q=80"
+    },
+    {
+      "id": 7,
+      "name": "Ex item",
+      "category": "Entertainment",
+      "price": 250,
+      "seller_id": 7,
+      "condition": "Like New",
+      "stock": 1,
+      "rating": 0,
+      "icon": "Gamepad2",
+      "description": "Negotiable",
+      "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80"
+    },
+    {
+      "id": 8,
+      "name": "Premium Notebooks (Pack of 3)",
+      "category": "Stationery",
+      "price": 800,
+      "seller_id": 1,
+      "condition": "New",
+      "stock": 7,
+      "rating": 5,
+      "icon": "PenTool",
+      "image": "https://images.unsplash.com/photo-1531346878377-a541e4a0ecce?w=500&q=80",
+      "description": "High quality ruled notebooks."
+    },
+    {
+      "id": 9,
+      "name": "Desk Lamp",
+      "category": "Dorm Items",
+      "price": 1500,
+      "seller_id": 2,
+      "condition": "Like New",
+      "stock": 0,
+      "rating": 4.8,
+      "icon": "Sofa",
+      "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+      "description": "Bright LED desk lamp."
+    },
+    {
+      "id": 10,
+      "name": "PS4 Controller",
+      "category": "Entertainment",
+      "price": 4500,
+      "seller_id": 3,
+      "condition": "Good",
+      "stock": 1,
+      "rating": 4.5,
+      "icon": "Gamepad2",
+      "image": "https://images.unsplash.com/photo-1526509867162-5b0c0d1b4b33?w=500&q=80",
+      "description": "Used PS4 dualshock controller."
+    },
+    {
+      "id": 11,
+      "name": "Lab Coat",
+      "category": "Other",
+      "price": 1200,
+      "seller_id": 4,
+      "condition": "Good",
+      "stock": 2,
+      "rating": 4.2,
+      "icon": "Boxes",
+      "image": "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=500&q=80",
+      "description": "White lab coat, size Medium."
+    },
+    {
+      "id": 12,
+      "name": "Laptop Sticker Packs",
+      "category": "Other",
+      "price": 1300,
+      "seller_id": 8,
+      "university_id": "ST12345",
+      "condition": "New",
+      "stock": 89,
+      "rating": 0,
+      "icon": "Boxes",
+      "image": "http://localhost:5000/uploads/img_1788815804631_6ltsc8.jpg",
+      "description": "Customize your own sticker pack today"
+    },
+    {
+      "id": 13,
+      "name": "Test",
+      "category": "Dorm Items",
+      "price": 400,
+      "seller_id": 8,
+      "university_id": "ST12345",
+      "condition": "Fair",
+      "stock": 0,
+      "rating": 0,
+      "icon": "Sofa",
+      "image": null,
+      "description": "Buy it"
+    },
+    {
+      "id": 14,
+      "name": "Test",
+      "category": "Study Equipment",
+      "price": 250,
+      "seller_id": 8,
+      "university_id": "ST12345",
+      "room_number": "85",
+      "contact_number": "0111214123",
+      "condition": "Like New",
+      "stock": 0,
+      "rating": 0,
+      "icon": "Calculator",
+      "image": "http://localhost:5000/uploads/img_1788879398579_4cpo0r.jpg",
+      "description": "test"
+    },
+    {
+      "id": 15,
+      "name": "Scientific Calculators",
+      "category": "Electronics",
+      "price": 100,
+      "seller_id": 8,
+      "university_id": "TE121456",
+      "room_number": "B-85",
+      "contact_number": "0711234567",
+      "condition": "New",
+      "stock": 5,
+      "rating": 0,
+      "icon": "Laptop",
+      "image": "http://localhost:5000/uploads/img_1788886364793_ezikel.jpg",
+      "description": "fx-991ES, fx-1234, fx-4567"
+    },
+    {
+      "id": 16,
+      "name": "Item 1",
+      "category": "Study Equipment",
+      "price": 500,
+      "seller_id": 10,
+      "university_id": "TE121456",
+      "room_number": "A-61",
+      "contact_number": "0111214123",
+      "condition": "Like New",
+      "stock": 3,
+      "rating": 0,
+      "icon": "Calculator",
+      "image": null,
+      "description": "example"
+    },
+    {
+      "id": 17,
+      "name": "Ict notes",
+      "category": "Books & Notes",
+      "price": 500,
+      "seller_id": 11,
+      "university_id": "12",
+      "room_number": "1",
+      "contact_number": "2",
+      "condition": "Good",
+      "stock": 0,
+      "rating": 0,
+      "icon": "BookOpen",
+      "image": "http://localhost:5000/uploads/img_1788974806676_l1rai4.jpg",
+      "description": "notes include all modules"
+    }
+  ]
+}
