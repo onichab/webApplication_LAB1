@@ -39,6 +39,32 @@ router.get('/', (req, res) => {
   }
 });
 
+router.get('/notifications', authenticate, (req, res) => {
+  try {
+    const db = readDB();
+    if (!db.notifications) db.notifications = [];
+    const userNotifications = db.notifications
+      .filter(n => n.seller_id === req.user.userId)
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    res.json(userNotifications);
+  } catch (err) {
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+router.delete('/notifications', authenticate, (req, res) => {
+  try {
+    const db = readDB();
+    if (!db.notifications) db.notifications = [];
+    // Remove notifications belonging to this user
+    db.notifications = db.notifications.filter(n => n.seller_id !== req.user.userId);
+    writeDB(db);
+    res.json({ message: 'Notifications cleared' });
+  } catch (err) {
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 router.get('/:id', (req, res) => {
   try {
     const db = readDB();
@@ -79,7 +105,11 @@ router.post('/', authenticate, (req, res) => {
         const ext = matches[1] === 'jpeg' ? 'jpg' : matches[1];
         const buffer = Buffer.from(matches[2], 'base64');
         const filename = `img_${Date.now()}_${Math.random().toString(36).substring(7)}.${ext}`;
-        const filepath = path.join(__dirname, '../../uploads', filename);
+        const uploadDir = path.join(__dirname, '../../uploads');
+        if (!fs.existsSync(uploadDir)) {
+          fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        const filepath = path.join(uploadDir, filename);
         fs.writeFileSync(filepath, buffer);
         finalImageUrl = `http://localhost:5000/uploads/${filename}`;
       }
@@ -164,12 +194,14 @@ router.patch('/:id', authenticate, (req, res) => {
 
 router.post('/buy', (req, res) => {
   try {
-    const { items } = req.body;
+    const { items, buyerName, buyerPhone } = req.body;
     if (!items || !Array.isArray(items)) {
       return res.status(400).json({ error: 'Invalid payload' });
     }
 
     const db = readDB();
+    if (!db.notifications) db.notifications = [];
+    
     const purchasedProducts = [];
 
     // Check stock for all items first
@@ -184,9 +216,17 @@ router.post('/buy', (req, res) => {
       purchasedProducts.push({ product, quantity: item.quantity });
     }
 
-    // Deduct stock
+    // Deduct stock and create notifications
     purchasedProducts.forEach(({ product, quantity }) => {
       product.stock -= quantity;
+      
+      db.notifications.push({
+        id: Date.now() + Math.random(),
+        seller_id: product.seller_id,
+        message: `Your item "${product.name}" (x${quantity}) was ordered by ${buyerName || 'a buyer'}. Buyer's Contact: ${buyerPhone || 'Not provided'}`,
+        read: false,
+        created_at: new Date().toISOString()
+      });
     });
 
     writeDB(db);

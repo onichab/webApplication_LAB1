@@ -42,7 +42,13 @@ export default function Checkout() {
     const nextErrors = {};
     if (!form.name.trim()) nextErrors.name = 'Name is required.';
     if (!form.studentId.trim()) nextErrors.studentId = 'Student ID is required.';
-    if (!form.phone.trim()) nextErrors.phone = 'Phone number is required.';
+    
+    if (!form.phone.trim()) {
+      nextErrors.phone = 'Phone number is required.';
+    } else if (!/^\d{10}$/.test(form.phone.trim())) {
+      nextErrors.phone = 'Phone number must be exactly 10 digits.';
+    }
+
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
@@ -55,7 +61,11 @@ export default function Checkout() {
       const response = await fetch('http://localhost:5000/api/products/buy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: items.map(i => ({ id: i.id, quantity: i.quantity })) })
+        body: JSON.stringify({ 
+          items: items.map(i => ({ id: i.id, quantity: i.quantity })),
+          buyerName: form.name.trim(),
+          buyerPhone: form.phone.trim()
+        })
       });
 
       if (!response.ok) {
@@ -197,8 +207,12 @@ export default function Checkout() {
                 id="phone"
                 type="tel"
                 value={form.phone}
-                onChange={updateField('phone')}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, '');
+                  if (val.length <= 10) setForm((f) => ({ ...f, phone: val }));
+                }}
                 placeholder="07X XXX XXXX"
+                maxLength={10}
               />
               {errors.phone && <span className="form-error">{errors.phone}</span>}
             </div>

@@ -31,8 +31,16 @@ export default function ProductCarousel({ products, intervalMs = 4000 }) {
           className="hero-feature__card"
         >
           <div className="hero-feature__image-wrap">
-            {product.image ? (
-              <img src={product.image} alt={product.name} className="hero-feature__image" />
+            {product.image && !product.imageError ? (
+              <img 
+                src={product.image} 
+                alt={product.name} 
+                className="hero-feature__image" 
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentNode.innerHTML = '<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-circle" style="color: var(--color-text-muted)"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg><span style="font-size: 1rem; color: var(--color-text-muted); font-weight: 600; margin-top: 8px;">Image failed to load</span></div>';
+                }}
+              />
             ) : (
               <Icon name={product.icon} size={64} strokeWidth={1.2} />
             )}

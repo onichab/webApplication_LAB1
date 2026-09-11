@@ -54,6 +54,18 @@ export default function Sell() {
     setLoading(true);
     setError('');
 
+    if (!formData.image) {
+      setError('Please upload a photo of the item.');
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.contactNumber || !/^\d{10}$/.test(formData.contactNumber)) {
+      setError('Contact number is required and must be exactly 10 digits.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const token = localStorage.getItem('token');
       const categoryIconMap = categories.reduce((acc, cat) => {
@@ -183,12 +195,16 @@ export default function Sell() {
               </div>
               <div className="form-field">
                 <label>Contact Number</label>
-                <input
-                  type="text"
+                <input 
+                  type="tel" 
                   name="contactNumber"
                   value={formData.contactNumber}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, '');
+                    if (val.length <= 10) setFormData({ ...formData, contactNumber: val });
+                  }}
                   placeholder="e.g., 071 234 5678"
+                  maxLength={10}
                 />
               </div>
             </div>
