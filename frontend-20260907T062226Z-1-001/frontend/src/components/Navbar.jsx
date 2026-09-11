@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Icon } from '../utils/icons.jsx';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -13,9 +14,25 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const { itemCount } = useCart();
+  const { cart } = useCart();
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+
+  const itemCount = cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+  const [notificationCount, setNotificationCount] = useState(0);
+
+  useEffect(() => {
+    if (user) {
+      fetch('http://localhost:5000/api/products/notifications', {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) setNotificationCount(data.length);
+      })
+      .catch(console.error);
+    }
+  }, [user]);
 
   const handleSearchClick = () => {
     if (window.location.pathname !== '/') {
@@ -62,6 +79,12 @@ export default function Navbar() {
             <Icon name="ShoppingCart" size={20} />
             {itemCount > 0 && <span className="icon-btn__badge">{itemCount}</span>}
           </Link>
+          {user && (
+            <Link to="/my-listings" className="icon-btn icon-btn--cart" aria-label="Notifications">
+              <Icon name="Bell" size={20} />
+              {notificationCount > 0 && <span className="icon-btn__badge" style={{ background: '#E0708C' }}>{notificationCount}</span>}
+            </Link>
+          )}
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginLeft: '10px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

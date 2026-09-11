@@ -14,6 +14,7 @@ export default function ProductDetails() {
   const [justAdded, setJustAdded] = useState(false);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/products/${id}`)
@@ -56,7 +57,7 @@ export default function ProductDetails() {
     );
   }
 
-  const inStock = product.stock > 0;
+  const inStock = product ? product.stock > 0 : false;
 
   return (
     <>
@@ -72,10 +73,18 @@ export default function ProductDetails() {
 
         <div className="product-details__grid">
           <div className="product-details__image" style={{ overflow: 'hidden' }}>
-            {product.image ? (
-              <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            {product.image && !imageError ? (
+              <img 
+                src={product.image} 
+                alt={product.name} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                onError={() => setImageError(true)}
+              />
             ) : (
-              <Icon name={product.icon} size={96} strokeWidth={1.3} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '16px' }}>
+                <Icon name="XCircle" size={48} style={{ color: 'var(--color-text-muted)' }} />
+                <span style={{ fontSize: '1.2rem', color: 'var(--color-text-muted)', fontWeight: '600' }}>Image failed to load</span>
+              </div>
             )}
           </div>
 

@@ -23,7 +23,8 @@ import {
   Plus,
   PackageOpen,
   Moon,
-  Sun
+  Sun,
+  Bell
 } from 'lucide-react';
 
 // Central registry so components can reference icons by name (string)
@@ -53,7 +54,8 @@ export const iconMap = {
   Plus,
   PackageOpen,
   Moon,
-  Sun
+  Sun,
+  Bell
 };
 
 export function Icon({ name, ...props }) {

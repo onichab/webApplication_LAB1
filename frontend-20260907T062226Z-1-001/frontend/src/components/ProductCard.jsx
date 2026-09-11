@@ -22,14 +22,24 @@ export default function ProductCard({ product, showRating = false }) {
     setTimeout(() => setJustAdded(false), 1500);
   };
 
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div className="product-card">
       <Link to={`/products/${product.id}`} className="product-card__link">
         <div className="product-card__image">
-          {product.image ? (
-            <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          {product.image && !imageError ? (
+            <img 
+              src={product.image} 
+              alt={product.name} 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              onError={() => setImageError(true)}
+            />
           ) : (
-            <Icon name={product.icon} size={36} strokeWidth={1.5} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <Icon name="XCircle" size={24} style={{ color: 'var(--color-text-muted)' }} />
+              <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>Image failed to load</span>
+            </div>
           )}
           <button
             className={`product-card__fav${favorited ? ' product-card__fav--active' : ''}`}
